@@ -1,0 +1,7 @@
+{
+  "name": "merchant-mobile-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

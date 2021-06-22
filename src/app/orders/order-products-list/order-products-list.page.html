@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="back()" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="8" offset-md="2" text-center *ngIf="isLoading">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+        <div *ngIf="orderProducts?.length > 0">
+          <ion-list>
+            <ion-item *ngFor="let product of orderProducts">
+              <ion-thumbnail class="thumbWrap" slot="start">
+                <!-- <span *ngIf="product?.store_discount > 0" class="discount_logo">
+                  {{ product?.store_discount | number : '1.0-0' }}%
+                  <br>OFF
+                </span> -->
+                <ion-img *ngIf="product?.image_url" [src]="product?.image_url"></ion-img>
+                <ion-img *ngIf="!product?.image_url" src="assets/images/default_image.jpg"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <h2>{{product?.product_name}}</h2>
+                <h2>Items Purchased: {{product?.quantity}}</h2>
+                <p style="font-weight:bold;">{{product?.product_weight + ' ' + product?.weight_text }}</p>              
+                <p>
+                  <span style="font-weight:bold;"> &#8377; {{product?.store_selling_price }} </span>
+                </p>
+                <p>
+                  <span style="font-weight:bold;"> Total: &#8377; {{product?.store_selling_price*product?.quantity }} </span>
+                </p>
+              </ion-label>
+            </ion-item>
+
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+<ion-footer class="footer_color" *ngIf="orderProducts?.length > 0">
+    <ion-row *ngIf="orderProducts[0].status == 7">  
+      <ion-col size="7">
+        <ion-button style="--color-activated: #fff;" expand="full" fill="clear" (click)="confirmedItems(8,3)">
+            Order Amount: &#8377;{{orderProducts[0].total_amount}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="5">
+        <ion-button style="--color-activated: #fff;" expand="full" fill="clear" (click)="confirmedItems(8,3)">
+            Confirm Items
+        </ion-button>
+        </ion-col>
+    </ion-row>
+    <ion-row *ngIf="orderProducts[0].status == 8">  
+      <ion-col size="12">
+        <ion-button style="--color-activated: #fff;" expand="full" fill="clear" (click)="pendingBillConfirmation()">
+            Pending Bill Confirmation
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-footer>

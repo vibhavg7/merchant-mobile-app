@@ -1,0 +1,109 @@
+.thumbWrap {
+    // height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.discount_logo
+{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 5px 5px;background: #99c655;border: 2px solid;
+    text-align: center;vertical-align: top;float:left;
+    color:white;font: 10px Arial, sans-serif;position: absolute;
+    top: -49%;
+    right: -8px;
+}
+
+
+ion-content{
+    --ion-background-color: #F8F8F8;
+  }
+  
+  
+  ion-item{
+    --ion-background-color:#fff;
+    padding-bottom:10px;
+  }
+
+  .outofstockButton {
+    background-color: red !important;
+    color: #fff !important;
+    float:right;
+    border-radius: 2px;    
+    padding: 6px;
+    height: 35px;
+    overflow: hidden;
+    border:1px solid red !important
+}
+
+.stockButton {
+    background-color: #6fa833 !important;
+    color: #fff !important;
+    float:right;
+    border-radius: 2px;    
+    padding: 6px;
+    height: 35px;
+    overflow: hidden;
+    border:1px solid #6fa833 !important
+}
+
+
+  
+.noliveordericon {
+    color: #b61671;
+    display: block;
+    /* text-align: center; */
+    /* align-items: center; */
+    margin: auto;
+    font-size: 60px;
+  }
+  
+  .outer_empty_cart_wrap
+  {
+      display: flex;
+      justify-content: center;
+      /* align horizontal */
+      align-items: center;
+      flex-wrap:wrap;
+      /* align vertical */        
+      width: 100%;
+      height: 80%
+  }
+  
+  .innerCartWrap {
+      width: 200px;
+      text-align: center;
+  }
+
+  .productnametext {
+    display: inline-block;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+
+  .store-item-enabled {
+    --color: #000;
+  }
+
+  .store-item-disabled {
+    --background: #D8D8D8 !important;
+    --color: #000;
+  }
+
+  .label-disabled {
+    font-weight: bold;
+    font-size: 14px;
+    color: red;
+  }
+
+  .label-enabled {
+    font-weight: bold;
+    font-size: 14px;
+    color: green;
+  }
+

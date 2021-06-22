@@ -1,0 +1,163 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Product Catelog</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToHome()" defaultHref=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addStoreProduct()" [formGroup]="addStoreProductForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offset-md="2" class="ion-text-center" *ngIf="isLoading">
+          <ion-spinner color="primary"></ion-spinner>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Product Name</ion-label>
+            <ion-input [disabled]="true" #myinput type="text" name="product_name" formControlName="product_name" [(ngModel)]="registerCredentials.product_name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">MRP (&#8377;)</ion-label>
+            <ion-input (keypress)="numberOnly($event)" (change)="calculateDiscount($event)" type="text" name="product_marked_price" [(ngModel)]="registerCredentials.product_marked_price"
+              formControlName="product_marked_price"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text *ngIf="submitted && f.product_marked_price.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.product_marked_price.errors.required">MRP is required</span>
+          </ion-text>
+          <ion-text *ngIf="submitted && f.product_marked_price.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.product_marked_price.errors.pattern">Please enter valid MRP</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">SP (&#8377;)</ion-label>
+            <ion-input (keypress)="numberOnly($event)" (change)="calculateDiscount($event)" type="text" name="store_selling_price" [(ngModel)]="registerCredentials.store_selling_price"
+              formControlName="store_selling_price"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text *ngIf="submitted && f.store_selling_price.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.store_selling_price.errors.required">SP is required</span>
+          </ion-text>
+          <ion-text *ngIf="submitted && f.store_selling_price.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.store_selling_price.errors.pattern">Please enter valid SP</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Discount (%)</ion-label>
+            <ion-input readonly type="text" name="store_discount" [(ngModel)]="registerCredentials.store_discount" formControlName="store_discount"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text *ngIf="submitted && f.store_discount.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.store_discount.errors.required">Discount is required</span>
+          </ion-text>
+          <ion-text *ngIf="submitted && f.store_discount.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.store_discount.errors.pattern">Please enter valid Discount</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Product Caping</ion-label>
+            <ion-input maxlength="2" (keypress)="numberOnly($event)" type="text" name="store_product_caping" [(ngModel)]="registerCredentials.store_product_caping"
+              formControlName="store_product_caping">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text *ngIf="submitted && f.store_product_caping.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.store_product_caping.errors.required">Caping is required</span>
+          </ion-text>
+          <ion-text *ngIf="submitted && f.store_product_caping.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.store_product_caping.errors.pattern">Please enter valid number</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-bottom: -20px;">
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item lines="none">
+            <input style=" width: 1.1em; height: 1.1em;" type="radio" value="1" formControlName="stock" id="stock" name="stock" [checked]="registerCredentials.stock === 1"
+              [(ngModel)]="registerCredentials.stock">
+            <label style="margin-left:4px" for="stock">
+              Stock
+            </label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item lines="none">
+            <input style=" width: 1.1em; height: 1.1em;" type="radio" value="0" formControlName="stock" name="stock" id="outofstock"
+              [checked]="registerCredentials.stock === 0" [(ngModel)]="registerCredentials.stock">
+            <label style="margin-left:4px" for="outofstock">
+              Out of stock</label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-text *ngIf="submitted && f.stock.errors" style="color:red;margin-left:10px">
+            <span *ngIf="f.stock.errors.required">Stock Level is required</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Status </ion-label>
+            <ion-select [(ngModel)]="registerCredentials.status" formControlName="status" 
+            value="{{registerCredentials.status}}" ok-text="Okay"
+              cancel-text="Dismiss">
+              <ion-select-option value="1">Enabled</ion-select-option>
+              <ion-select-option value="0">Disabled</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <!-- {{addStoreProductForm.valid}} -->
+          <ion-button type="submit" expand="block" [disabled]="submitted && buttonSubmitted" [ngClass]="{'address-button-enabled': !!addStoreProductForm.valid, 'address-button-disabled': !addStoreProductForm.valid }">
+            <span *ngIf="productId == ''">
+              ADD Product
+            </span>
+            <span *ngIf="productId != ''">
+              UPDATE Product
+            </span>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

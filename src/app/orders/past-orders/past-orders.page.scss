@@ -1,0 +1,38 @@
+
+ion-content{
+    --ion-background-color: #FFF;
+  }
+  
+  
+  ion-item{
+    --ion-background-color:#F8F8F8;
+    padding-bottom:10px;
+  }
+  
+
+  
+.noliveordericon {
+  color: #b61671;
+  display: block;
+  /* text-align: center; */
+  /* align-items: center; */
+  margin: auto;
+  font-size: 60px;
+}
+
+.outer_empty_cart_wrap
+{
+    display: flex;
+    justify-content: center;
+    /* align horizontal */
+    align-items: center;
+    flex-wrap:wrap;
+    /* align vertical */        
+    width: 100%;
+    height: 80%
+}
+
+.innerCartWrap {
+    width: 200px;
+    text-align: center;
+}

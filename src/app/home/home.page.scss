@@ -1,0 +1,49 @@
+
+ion-content{
+  --ion-background-color: #FFFF;
+}
+
+
+ion-item{
+  // --ion-background-color:#F8F8F8;
+}
+
+ion-toggle {
+
+  // --background: #000;
+  --background-checked: #6fa833;
+  // // --handle-background	:red;
+  --handle-background: red;
+  // // width: 40px;
+  // --handle-spacing: 0px;
+  // --handle-height: 100%;
+  // --handle-background-checked: #6fa833;
+}
+
+.store-open {
+  // margin-left: 106px;
+    font-weight: 600;
+    color: green;
+    font-size: 18px;
+}
+
+.store-closed {
+  // margin-left: 96px;
+    font-weight: 600;
+    color: red;
+    font-size: 18px;
+}
+
+// ion-toggle::before {
+//   position: absolute;
+
+//   top: 16px;
+//   left: 10px;
+
+//   content: "ON";
+
+//   color: white;
+//   font-size: 12px;
+
+//   z-index: 1;
+// }

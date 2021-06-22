@@ -1,0 +1,8 @@
+{
+  "appId": "com.grostep.merchantapp",
+  "appName": "GrostepMerchant",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

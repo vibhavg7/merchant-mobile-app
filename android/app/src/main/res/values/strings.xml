@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GrostepMerchant</string>
+    <string name="title_activity_main">GrostepMerchant</string>
+    <string name="package_name">com.grostep.merchantapp</string>
+    <string name="custom_url_scheme">com.grostep.merchantapp</string>
+</resources>

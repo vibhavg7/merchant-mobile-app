@@ -1,0 +1,129 @@
+<ion-header>
+    <!-- <ion-row>
+        <ion-col size="12" size-md="8" offset-md="2" class="ion-text-center" *ngIf="isLoading">
+          <ion-spinner color="primary"></ion-spinner>
+        </ion-col>
+      </ion-row> -->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-title>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label>Grostep</ion-label>``
+          <ion-toggle [(ngModel)]="pepperoni"></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </ion-title> -->
+    <ion-list>
+        <ion-item lines="none">
+          <ion-label style="font-size:18px">Grostep</ion-label>
+          <!-- checked *ngIf="isLoading"-->
+          <!-- [(ngModel)]="storeStatus" -->
+          <ng-container *ngIf="!isLoading">
+              <ion-label [ngClass]="IsstoreNotClosed ? 'store-open' : 'store-closed'"
+              >{{IsstoreNotClosed ? 'OPEN': 'CLOSED'}}</ion-label>
+              
+              <ion-toggle [(ngModel)]="IsstoreNotClosed"
+                          [checked]="IsstoreNotClosed"
+               (click)="changeStoreStatus($event)">
+          </ion-toggle>
+        </ng-container>
+        </ion-item>
+      </ion-list>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <!-- pullingIcon="chevron-down-circle"  -->
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <!-- <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <form [formGroup]="searchCriteriaForm">
+          <ion-item>
+            <ion-label position="floating">Search in Orders</ion-label>
+            <ion-input type="text" (keyup)="onChanges()" autocomplete="off" formControlName="searchCriteria"></ion-input>
+            <ion-icon style="padding-top: 8px;" name="search" slot="end"></ion-icon>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row> -->
+    <ion-row style="cursor:pointer" (click)="newOrder()">
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-list lines="none">
+          <ion-item style="--ion-background-color:#F8F8F8;">
+            <ion-label>
+              <h2>
+                <span>New Order</span>
+                <ion-icon style="float:right" name="arrow-dropright"></ion-icon>
+                <ion-badge style="float:right;background-color:#6fa833;color:#fff">
+                  {{newordercount}}
+                </ion-badge>
+              </h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row style="cursor:pointer" (click)="pendingOrder()">
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-list lines="none">
+          <ion-item style="  --ion-background-color:#F8F8F8;">
+            <ion-label>
+              <h2>
+                <span>Pending Order</span>
+                <ion-icon style="float:right" name="arrow-dropright"></ion-icon>
+                <ion-badge style="float:right" style="float:right;background-color:#6fa833;color:#fff">
+                  {{pendingordercount}}
+                </ion-badge>
+              </h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row style="cursor:pointer" (click)="pendingBillingOrders()">
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label>
+              <h2>
+                <span>Pending Billing</span>
+                <ion-icon style="float:right" name="arrow-dropright"></ion-icon>
+                <ion-badge style="float:right" color="primary">
+                  {{pendingBillingCount}}
+                </ion-badge>
+              </h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row> -->
+    <ion-row style="cursor:pointer" (click)="pickedOrder()">
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-list lines="none">
+          <ion-item style="  --ion-background-color:#F8F8F8;">
+            <ion-label>
+              <h2>
+                <span>Today's Picked Order</span>
+                <ion-icon style="float:right" name="arrow-dropright"></ion-icon>
+                <ion-badge style="float:right" style="float:right;background-color:#6fa833;color:#fff">
+                  {{pickedordercount}}
+                </ion-badge>
+              </h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-content fullscreen>
+
+  <ion-item style="--background: transparent;" class="close-fake" lines="none" class="ion-text-center">
+    <ion-button (click)="back()" fill="clear" color="light">
+      <ion-icon name="arrow-back" slot="start"></ion-icon> Back
+    </ion-button>
+  </ion-item>
+
+  <ion-slides [options]="sliderOpts" #slider>
+    <ion-slide>
+      <div class="swiper-zoom-container">
+          <img [src]="billimage">
+      </div>      
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

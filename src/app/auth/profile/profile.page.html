@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToHome()" defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{merchantData?.store_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-row>
+            <ion-col size="8">
+              <ion-item lines="none">
+                <p>Store Id: {{merchantData?.store_id}}</p>
+              </ion-item>
+              <ion-item lines="none">
+                <p>Store Name: {{merchantData?.store_name}}</p>
+              </ion-item>
+            </ion-col>
+            <ion-col size="4" style="border:1px dotted">
+                <img *ngIf="merchantData?.image_url" [src]="merchantData?.image_url" onError="this.src='assets/images/default_image.jpg';" />
+                <ion-img *ngIf="!merchantData?.image_url" src="assets/images/default_image.jpg"></ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-item>
+            <p>Store Email: {{merchantData?.store_email}}</p>
+          </ion-item>
+          <ion-item>
+            <p>Store Category: {{merchantData?.store_category_name}}</p>
+          </ion-item>
+          <ion-item>
+            <p>Store Phone Number: {{merchantData?.alternative_number}}</p>
+          </ion-item>
+          <ion-item>
+            <p>Store Location: {{merchantData?.country}} / {{merchantData?.state}} / {{merchantData?.city}}</p>
+          </ion-item>
+          <ion-item>
+            <p>Store PinCode: {{merchantData?.pin_code}}</p>
+          </ion-item>
+          <ion-item>
+            <p>Store Lat and Long: {{merchantData?.latitude}} / {{merchantData?.longitude}}</p>
+          </ion-item>
+          <ion-item>
+            <p>GST Number: {{merchantData?.gst_number}}</p>
+          </ion-item>
+          <ion-item>
+            <p>PAN Number: {{merchantData?.pan_number}}</p>
+          </ion-item>
+          <ion-item>
+            <p>Store Address: {{merchantData?.address}}</p>
+          </ion-item>
+          <ion-item>
+            <p>{{merchantData?.status == 1 ? 'Available':'Not Available' }}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <!-- <ion-col size="2">
+
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToHome()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Order Tracking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="8" offset-md="2" class="ion-text-center" *ngIf="isLoading">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+      <!-- <ion-col size="12" size-sm="8" offset-sm="2">
+        <form [formGroup]="searchCriteriaForm">
+          <ion-item>
+            <ion-label position="floating">Search in orders</ion-label>
+            <ion-input type="text" (keyup)="onChanges()" autocomplete="off" formControlName="searchCriteria"></ion-input>
+            <ion-icon style="padding-top: 8px;" name="search" slot="end"></ion-icon>
+          </ion-item>
+        </form>
+      </ion-col> -->
+    </ion-row>
+    <ion-row>
+      <!-- <ion-col size-md="8" offset-md="2" class="ion-text-center" *ngIf="isLoading">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col> -->
+      <ion-col size="12" size-sm="8" offset-sm="2" style="font-weight:550">
+        <ion-text>Total orders count : {{storeordertotalcount}}</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngIf="storeOrders.length > 0" size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <div>
+          <ion-list>
+            <ion-item *ngFor="let storeOrder of storeOrders">
+              <ion-label>
+                <div (click)="orderDetail(storeOrder?.order_id)">
+                  <ng-container>
+                    <p>
+                      Order Id : {{storeOrder?.order_id}}
+                      <span style="float: right;font-size: 16px;font-weight: bold;">{{storeOrder?.order_status}}</span>
+                    </p>
+                    <!-- <p>Store Name : {{storeOrder?.store_name}}</p> -->
+                    <p>Total Items : {{storeOrder?.total_item_count}}</p>
+                    <p>Total Order Amount : &#8377; {{storeOrder?.order_amount}}</p>
+                    <p *ngIf="storeOrder?.merchant_bill_amount" style="font-weight:500">
+                      Total Bill Amount : &#8377; {{storeOrder?.merchant_bill_amount}}</p>
+                  </ng-container>
+                </div>
+                <!-- <p>Date : {{storeOrder?.order_placing_date | myDatePipe}}</p> -->
+                <ion-button *ngIf="orderType === 1" (click)="orderRequested(storeOrder?.order_id,2,2, storeOrder?.order_amount)" type="submit" expand="block">
+                  ACCEPT
+                </ion-button>
+                <ion-button *ngIf="orderType === 2 && (storeOrder?.status >= 2 && storeOrder?.status <= 6 )" style="margin: 0px -7px;" [disabled]="true"
+                  type="submit" expand="block">
+                  Pending on delivery and customer
+                </ion-button>
+                <ion-button *ngIf="orderType === 2 && storeOrder?.status == 7" (click)="itemsRequested(storeOrder?.order_id, storeOrder?.status)"
+                  type="submit" expand="block">
+                  Requested Items
+                </ion-button>
+                <ion-button *ngIf="orderType === 2 && storeOrder?.status == 8" (click)="pendingBillConfirmation(storeOrder?.order_id, storeOrder?.status)"
+                  type="submit" expand="block">
+                  Pending Bill Confirmation
+                </ion-button>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-infinite-scroll *ngIf="totalPages > 1" threshold="15%" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more orders...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>

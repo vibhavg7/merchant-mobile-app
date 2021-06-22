@@ -1,0 +1,33 @@
+<ion-content fullscreen>
+  <ion-item style="--background: transparent;" class="close-fake" lines="none" class="ion-text-center">
+    <ion-button (click)="back()" fill="clear" color="light">
+      <ion-icon name="arrow-back" slot="start"></ion-icon> Back
+    </ion-button>
+  </ion-item>
+  <ion-slides [options]="sliderOpts" #slider>
+    <ion-slide>
+      <div class="swiper-zoom-container">
+        <img src="{{billimage}}" />
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <ion-list>
+    <ion-item>
+        <ion-label position="floating">Bill No.</ion-label>
+        <ion-input type="number" maxlength="200" #billnumber ></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+        <ion-label position="floating">Bill Amount.</ion-label>
+        <ion-input type="number" maxlength="200" #billamount></ion-input>
+      </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer class="footer_color">
+  <ion-button [disabled]="(!billnumber.value || !billamount.value) || submitted" expand="block" fill="clear" 
+    style="color:#fff !important"
+    (click)="acceptorderImage(billnumber.value,billamount.value)">
+    ACCEPT BILL
+    <!-- {{!billnumber.value && !billamount.value}} -->
+    <ion-icon name="arrow-forward"></ion-icon>
+  </ion-button>
+</ion-footer>
